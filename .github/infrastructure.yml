@@ -181,13 +181,13 @@ repository:
   squash_merge_commit_message: BLANK
   squash_merge_commit_title: PR_TITLE
   topics:
-    - emoji
-    - extension
-    - gemoji
-    - github
-    - markdown
-    - micromark
-    - micromark-extension
+    - esast
+    - esast-util
+    - estree
+    - estree-util
+    - js
+    - unassert
+    - unist
   visibility: public
   vulnerability_alerts: true
   web_commit_signoff_required: true
