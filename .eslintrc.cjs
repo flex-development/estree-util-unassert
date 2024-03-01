@@ -10,6 +10,15 @@
  */
 const config = {
   extends: ['./.eslintrc.base.cjs'],
+  overrides: [
+    ...require('./.eslintrc.base.cjs').overrides,
+    {
+      files: ['src/interfaces/handler.ts'],
+      rules: {
+        '@typescript-eslint/prefer-function-type': 0
+      }
+    }
+  ],
   root: true
 }
 
