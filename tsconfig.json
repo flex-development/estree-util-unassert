@@ -29,6 +29,7 @@
     "noUnusedParameters": false,
     "outDir": "dist",
     "paths": {
+      "#fixtures/*": ["__fixtures__/*"],
       "#src/*": ["src/*"],
       "#tests/*": ["__tests__/*"],
       "@flex-development/estree-util-unassert": ["src/index"]

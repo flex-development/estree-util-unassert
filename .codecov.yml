@@ -91,3 +91,4 @@ profiling:
   critical_files_paths:
     - src/utils/get-identifiers.ts
     - src/utils/has-module-id.ts
+    - src/visitors/*.ts
