@@ -4,3 +4,4 @@
  */
 
 export { default as AssignmentExpression } from './assignment-expression'
+export { default as CallExpression } from './call-expression'
