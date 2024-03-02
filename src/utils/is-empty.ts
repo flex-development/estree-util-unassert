@@ -3,7 +3,7 @@
  * @module estree-util-unassert/utils/isEmpty
  */
 
-import type { EmptyArray } from '@flex-development/tutils'
+import type { EmptyArray, Nilable } from '@flex-development/tutils'
 import type { EmptyBlockStatement, EmptyStatement, Node } from 'estree'
 import { is } from 'unist-util-is'
 
@@ -20,11 +20,13 @@ declare module 'estree' {
  * @see {@linkcode EmptyStatement}
  * @see {@linkcode Node}
  *
- * @param {Node} node - Node to check
+ * @param {Nilable<Node>} node - Node to check
  * @return {node is EmptyBlockStatement | EmptyStatement} `true` if `node` is an
  * empty block statement or empty statement, `false` otherwise
  */
-const isEmpty = (node: Node): node is EmptyBlockStatement | EmptyStatement => {
+const isEmpty = (
+  node: Nilable<Node>
+): node is EmptyBlockStatement | EmptyStatement => {
   return (
     is(node, 'EmptyStatement') ||
     is(node, 'BlockStatement') && !node.body.length

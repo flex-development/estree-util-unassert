@@ -29,15 +29,7 @@ describe('functional:utils/preleaveIfStatement', () => {
     beforeAll(() => {
       node = {
         alternate: null,
-        consequent: {
-          expression: {
-            arguments: [{ name: 'result', type: 'Identifier' }],
-            callee: { name: 'ok', type: 'Identifier' },
-            optional: false,
-            type: 'CallExpression'
-          },
-          type: 'ExpressionStatement'
-        },
+        consequent: { body: [], type: 'BlockStatement' },
         test,
         type: 'IfStatement'
       }
@@ -45,7 +37,7 @@ describe('functional:utils/preleaveIfStatement', () => {
       testSubject(node, context.trash)
     })
 
-    it('should add node to trash', () => {
+    it('should add node to trash if isEmpty(node.consequent)', () => {
       expect(context.trash.has(node)).to.be.true
     })
   })
