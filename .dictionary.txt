@@ -25,6 +25,7 @@ mlly
 nocheck
 nvmrc
 pathe
+picomatch
 pkgs
 preid
 shfmt

@@ -5,3 +5,4 @@
 
 export type { default as Handler } from './handler'
 export type { default as HandlerContext } from './handler-context'
+export type { default as Options } from './options'
