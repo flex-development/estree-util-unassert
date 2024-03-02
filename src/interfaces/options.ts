@@ -11,8 +11,8 @@ import type { FilterPattern } from '@rollup/pluginutils'
  */
 interface Options {
   /**
-   * A valid [`picomatch`][1] glob pattern, or array of patterns, matching
-   * assertion module ids.
+   * A regular expression, valid [`picomatch`][1] glob pattern, or array of
+   * patterns, matching assertion module ids.
    *
    * [1]: https://github.com/micromatch/picomatch
    *

@@ -9,6 +9,6 @@
   "src/**/*.ts": [
     "vitest run --changed --coverage",
     "yarn build",
-    "bash -c tsc -p tsconfig.build.json"
+    "bash -c tsc -p tsconfig.json"
   ]
 }

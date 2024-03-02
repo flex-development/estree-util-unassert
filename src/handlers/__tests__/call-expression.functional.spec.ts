@@ -322,24 +322,11 @@ describe('functional:handlers/CallExpression', () => {
         type: 'ExpressionStatement'
       }
 
-      context.grandparent = {
-        alternate: null,
-        consequent: context.parent,
-        test: notTrue,
-        type: 'IfStatement'
-      }
-
       TestSubject.call(context, ok, 'expression', undefined)
     })
 
     it('should add parent to trash', () => {
       expect(context.trash.has(context.parent!)).to.be.true
-    })
-
-    describe('is(grandparent, "IfStatement")', () => {
-      it('should add grandparent to trash if !grandparent.alternate', () => {
-        expect(context.trash.has(context.grandparent!)).to.be.true
-      })
     })
   })
 

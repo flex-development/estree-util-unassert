@@ -3,4 +3,5 @@
  * @module estree-util-unassert
  */
 
-export {}
+export type { Options } from './interfaces'
+export { default as unassert } from './unassert'

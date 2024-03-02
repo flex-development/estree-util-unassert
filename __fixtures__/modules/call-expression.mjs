@@ -1,61 +1,14 @@
-/**
- * @file Handlers - CallExpression
- * @module estree-util-unassert/handlers/CallExpression
- */
-
-import type { HandlerContext } from '#src/interfaces'
-import type { Key } from '#src/types'
 import {
   DOT,
   at,
   define,
-  set,
-  type Optional
+  set
 } from '@flex-development/tutils'
 import { ok, unreachable } from 'devlop'
-import type * as estree from 'estree'
-import { CONTINUE, type Index } from 'estree-util-visit'
+import { CONTINUE } from 'estree-util-visit'
 import { is } from 'unist-util-is'
 
-/**
- * Add an ancestor node to the trash to be removed on exit or replace `node` if
- * it contains an assertion identifier.
- *
- * Supported parents:
- *
- * - {@linkcode estree.ArrayExpression}
- * - {@linkcode estree.ArrowFunctionExpression}
- * - {@linkcode estree.AssignmentExpression}
- * - {@linkcode estree.AssignmentPattern}
- * - {@linkcode estree.AwaitExpression}
- * - {@linkcode estree.CallExpression}
- * - {@linkcode estree.ConditionalExpression}
- * - {@linkcode estree.ExportDefaultDeclaration}
- * - {@linkcode estree.ExpressionStatement}
- * - {@linkcode estree.LogicalExpression}
- * - {@linkcode estree.Property}
- * - {@linkcode estree.ReturnStatement}
- * - {@linkcode estree.UnaryExpression}
- * - {@linkcode estree.YieldExpression}
- *
- * @see {@linkcode HandlerContext}
- * @see {@linkcode estree.CallExpression}
- *
- * @this {HandlerContext}
- *
- * @param {estree.CallExpression} node - Node being entered
- * @param {Key} key - Field at which `node` lives in `this.parent` (or where a
- * list of nodes live if `this.parent[key]` is an array)
- * @param {Optional<Index>} index - Index where `node` lives in `this.parent`,
- * or `undefined` if `this.parent[key]` is not an array
- * @return {typeof CONTINUE} Next action
- */
-function CallExpression(
-  this: HandlerContext,
-  node: estree.CallExpression,
-  key: Key,
-  index: Optional<Index>
-): typeof CONTINUE {
+function CallExpression(node, key, index) {
   if (
     (
       is(node.callee, 'Identifier') &&
@@ -77,27 +30,13 @@ function CallExpression(
     ok(this.parent, 'expected `parent`')
     ok(key, 'expected `key`')
     ok(key in this.parent, `expected \`parent.${key}\``)
-
-    /**
-     * Zero (`0`) node.
-     *
-     * @const {estree.Literal} zero
-     */
-    const zero: estree.Literal = { raw: '0', type: 'Literal', value: 0 }
-
-    /**
-     * Void zero (`void 0`) expression node.
-     *
-     * @const {estree.UnaryExpression} void0
-     */
-    const void0: estree.UnaryExpression = {
+    const zero = { raw: '0', type: 'Literal', value: 0 }
+    const void0 = {
       argument: zero,
       operator: 'void',
       prefix: true,
       type: 'UnaryExpression'
     }
-
-    // add ancestor to trash or replace node
     switch (this.parent.type) {
       case 'ArrayExpression':
       case 'CallExpression':
@@ -144,14 +83,15 @@ function CallExpression(
           })
         }
         break
-      /* c8 ignore next 3 */
       default:
         console.dir(this.parent, { depth: 10 })
         void unreachable(`unexpected parent: ${this.parent.type}`)
     }
   }
-
   return CONTINUE
 }
 
-export default CallExpression
+var call_expression_default = CallExpression
+export {
+  call_expression_default as default
+}

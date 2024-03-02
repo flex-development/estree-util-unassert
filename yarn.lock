@@ -1516,10 +1516,12 @@ __metadata:
     remark-gfm: "npm:4.0.0"
     sh-syntax: "npm:0.4.2"
     source-map: "npm:0.8.0-beta.0"
+    to-vfile: "npm:8.0.0"
     trash-cli: "npm:5.0.0"
     ts-dedent: "npm:2.2.0"
     typescript: "npm:5.3.3"
     unist-util-is: "npm:6.0.0"
+    vfile: "npm:6.0.1"
     vite-tsconfig-paths: "npm:4.3.1"
     vitest: "npm:1.3.1"
     yaml-eslint-parser: "npm:1.2.2"
@@ -2357,11 +2359,11 @@ __metadata:
   linkType: hard
 
 "@types/estree-jsx@npm:^1.0.0":
-  version: 1.0.4
-  resolution: "@types/estree-jsx@npm:1.0.4"
+  version: 1.0.5
+  resolution: "@types/estree-jsx@npm:1.0.5"
   dependencies:
     "@types/estree": "npm:*"
-  checksum: 10/fb97b3226814e833689304759d8bac29d869ca4cfcfa36f2f3877fb9819f218a11396a28963607e1d0cc72363c3803bfe9a8b16a42924819824e63d10ec386db
+  checksum: 10/a028ab0cd7b2950168a05c6a86026eb3a36a54a4adfae57f13911d7b49dffe573d9c2b28421b2d029b49b3d02fcd686611be2622dc3dad6d9791166c083f6008
   languageName: node
   linkType: hard
 
@@ -10027,6 +10029,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"to-vfile@npm:8.0.0":
+  version: 8.0.0
+  resolution: "to-vfile@npm:8.0.0"
+  dependencies:
+    vfile: "npm:^6.0.0"
+  checksum: 10/95552e5c9158e65762cc1ce341f55e9b1ae3267e5a8fb3fa18f5710b588c51b03088c5011aef0a60ac334392cfee142ff4da132234bdfc9da822f3db5cbc8d81
+  languageName: node
+  linkType: hard
+
 "tr46@npm:^1.0.1":
   version: 1.0.1
   resolution: "tr46@npm:1.0.1"
@@ -10632,7 +10643,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vfile@npm:^6.0.0, vfile@npm:^6.0.1":
+"vfile@npm:6.0.1, vfile@npm:^6.0.0, vfile@npm:^6.0.1":
   version: 6.0.1
   resolution: "vfile@npm:6.0.1"
   dependencies:

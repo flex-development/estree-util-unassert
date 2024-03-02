@@ -75,8 +75,8 @@ const leave = (context: HandlerContext): Visitor => {
       const grandparent: Optional<Node> = at(ancestors, -2)
 
       // prepare if statement leave
-      if (is(grandparent, 'IfStatement')) {
-        preleaveIfStatement(grandparent, context.trash)
+      for (const node of [parent, grandparent]) {
+        is(node, 'IfStatement') && preleaveIfStatement(node, context.trash)
       }
 
       // return index of new next node

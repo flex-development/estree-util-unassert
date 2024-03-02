@@ -16,6 +16,7 @@
 **/node_modules/
 **/tsconfig*temp.json
 Brewfile
+__fixtures__/modules/*.cjs
 yarn.lock
 
 # NEGATED PATTERNS

@@ -21,6 +21,7 @@ const config: UserConfig = {
     'scope-enum': [Severity.Error, 'always', scopes([
       'chore',
       'handlers',
+      'util',
       'visitors'
     ])]
   }

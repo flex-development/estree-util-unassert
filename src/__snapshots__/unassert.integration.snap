@@ -1,0 +1,250 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`integration:unassert > remove assertions > program sample 0: add.mjs 1`] = `
+"function add(a, b) {
+  return a + b;
+}
+export default add;
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 1: assert.mjs 1`] = `
+"function assert(value, message, ...params) {
+  return void 0;
+}
+export default assert;
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 2: call-expression.mjs 1`] = `
+"import {DOT, at, define, set} from "@flex-development/tutils";
+import {CONTINUE} from "estree-util-visit";
+import {is} from "unist-util-is";
+function CallExpression(node, key, index) {
+  if (is(node.callee, "Identifier") && this.identifiers.has(node.callee.name) || is(node.callee, "MemberExpression") && is(node.callee.object, "Identifier") && this.identifiers.has(node.callee.object.name) || is(node.callee, "MemberExpression") && is(node.callee.object, "Identifier") && is(node.callee.property, "Identifier") && node.callee.object.name === "console" && node.callee.property.name === "assert") {
+    const zero = {
+      raw: "0",
+      type: "Literal",
+      value: 0
+    };
+    const void0 = {
+      argument: zero,
+      operator: "void",
+      prefix: true,
+      type: "UnaryExpression"
+    };
+    switch (this.parent.type) {
+      case "ArrayExpression":
+      case "CallExpression":
+        set(this.parent, key + DOT + index, void0);
+        break;
+      case "AssignmentExpression":
+        if (is(this.grandparent, "ExpressionStatement")) {
+          this.trash.add(this.grandparent);
+        } else {
+          define(this.parent, key, {
+            value: void0
+          });
+        }
+        break;
+      case "ArrowFunctionExpression":
+      case "AssignmentPattern":
+      case "ConditionalExpression":
+      case "LogicalExpression":
+      case "Property":
+        define(this.parent, key, {
+          value: void0
+        });
+        break;
+      case "AwaitExpression":
+        if (is(this.grandparent, "ExpressionStatement")) {
+          this.trash.add(this.grandparent);
+        } else {
+          define(this.parent, key, {
+            value: void0
+          });
+        }
+        break;
+      case "ExpressionStatement":
+        this.trash.add(this.parent);
+        break;
+      case "ExportDefaultDeclaration":
+        define(this.parent, key, {
+          value: at(node.arguments, 0, void0)
+        });
+        break;
+      case "ReturnStatement":
+      case "YieldExpression":
+        define(this.parent, key, {
+          value: null
+        });
+        break;
+      case "UnaryExpression":
+        if (is(this.grandparent, "ExpressionStatement")) {
+          this.trash.add(this.grandparent);
+        } else {
+          define(this.parent, key, {
+            value: this.parent.operator === "void" ? zero : void0
+          });
+        }
+        break;
+      default:
+        console.dir(this.parent, {
+          depth: 10
+        });
+    }
+  }
+  return CONTINUE;
+}
+var call_expression_default = CallExpression;
+export {call_expression_default as default};
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 3: century-from-year.mjs 1`] = `
+"const centuryFromYear = year => {
+  return Math.ceil(year / 100);
+};
+export default centuryFromYear;
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 4: digitize.mjs 1`] = `
+"function digitize(n) {
+  if (n <= 9) return [n];
+  const digits = [];
+  while (n > 0) digits.push(n % 10 | 0) && (n = n / 10 | 0);
+  return digits;
+}
+export default digitize;
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 5: divide.cjs 1`] = `
+""use strict";
+let bar = "BAR", foo = "FOO";
+function divide(a, b) {
+  return a / b;
+}
+module.exports = module.exports.default = divide;
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 6: gemoji-html.mjs 1`] = `
+"import {nameToEmoji} from "gemoji";
+import {codes} from "micromark-util-symbol";
+function gemojiHtml() {
+  return {
+    enter: {
+      gemoji() {
+        return void this.tag("<span>");
+      }
+    },
+    exit: {
+      gemoji(token) {
+        const val = this.sliceSerialize(token);
+        this.raw(nameToEmoji[val.slice(1, -1)] ?? val);
+        return void this.tag("</span>");
+      }
+    }
+  };
+}
+var html_default = gemojiHtml;
+export {html_default as default};
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 7: gemoji-shortcode.mjs 1`] = `
+"import {asciiAlphanumeric} from "micromark-util-character";
+import {codes} from "micromark-util-symbol";
+function previous(code) {
+  return code !== codes.backslash && code !== codes.colon;
+}
+var shortcode_default = {
+  name: "gemoji",
+  previous,
+  tokenize(effects, ok, nok) {
+    function inside(code) {
+      switch (true) {
+        case code === codes.colon:
+          effects.consume(code);
+          effects.exit("gemoji");
+          return ok;
+        case asciiAlphanumeric(code):
+        case code === codes.dash:
+        case code === codes.plusSign:
+        case code === codes.underscore:
+          effects.consume(code);
+          return inside;
+        default:
+          return nok(code);
+      }
+    }
+    function begin(code) {
+      switch (code) {
+        case codes.eof:
+        case codes.colon:
+          return nok(code);
+        default:
+          effects.consume(code);
+          return inside;
+      }
+    }
+    const start = code => {
+      effects.enter("gemoji");
+      effects.consume(code);
+      return begin;
+    };
+    return start;
+  }
+};
+export {shortcode_default as default};
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 8: http-assert.cjs 1`] = `
+""use strict";
+module.exports = module.exports.default = function (username, check) {
+  try {} catch (err) {}
+};
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 9: human-readable.mjs 1`] = `
+"async function humanReadable(seconds) {
+  return new Promise(resolve => {
+    let formatted = "";
+    for (const converter of [3600, 60, 1]) {
+      const time = seconds / converter | 0;
+      formatted += time < 10 ? \`0\${time}\` : time;
+      if (converter !== 1) formatted += ":";
+      seconds -= time * converter;
+    }
+    return resolve(formatted);
+  });
+}
+export default humanReadable;
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 10: multiply.cjs 1`] = `
+""use strict";
+const multiply = function (a, b) {
+  return a * b;
+};
+module.exports = module.exports.default = multiply;
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 11: noop.mjs 1`] = `
+"export default () => void 0;
+"
+`;
+
+exports[`integration:unassert > remove assertions > program sample 12: subtract.mjs 1`] = `
+"function subtract(a, b) {
+  return a - b;
+}
+export default subtract;
+"
+`;

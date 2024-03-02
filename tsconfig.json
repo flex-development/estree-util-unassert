@@ -54,16 +54,15 @@
   },
   "exclude": ["**/coverage", "**/dist", "**/node_modules"],
   "include": [
-    "**/**.json",
-    "**/**.mjs",
-    "**/**.mts",
-    "**/**.ts",
+    "**/**/*.json",
+    "**/**/*.mjs",
+    "**/**/*.mts",
+    "**/**/*.ts",
     "**/.*.json",
     "**/.*.mjs",
     "**/.*.mts",
     "**/.*.ts",
-    ".eslintrc*cjs",
-    "__fixtures__/*.cjs"
+    ".eslintrc*cjs"
   ],
   "mdx": {
     "plugins": [

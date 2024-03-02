@@ -128,7 +128,7 @@ describe('functional:visitors/leave', () => {
       })
     })
 
-    describe('is(grandparent, "IfStatement")', () => {
+    describe('is(ancestors[i], "IfStatement")', () => {
       let ancestors: Node[]
       let grandparent: IfStatement
       let index: number

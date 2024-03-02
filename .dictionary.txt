@@ -32,5 +32,6 @@ shfmt
 unassert
 unstub
 vates
+vfile
 vitest
 yarnrc
