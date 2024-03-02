@@ -1,6 +1,7 @@
 attw
 bdougie
 cefc
+codecov
 commitlintrc
 dedupe
 deno
