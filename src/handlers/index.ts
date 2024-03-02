@@ -6,3 +6,4 @@
 export { default as AssignmentExpression } from './assignment-expression'
 export { default as CallExpression } from './call-expression'
 export { default as ImportDeclaration } from './import-declaration'
+export { default as VariableDeclarator } from './variable-declarator'
