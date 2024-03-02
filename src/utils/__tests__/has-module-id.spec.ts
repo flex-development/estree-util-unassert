@@ -3,6 +3,8 @@
  * @module estree-util-unassert/utils/tests/unit/hasModuleId
  */
 
+import devlopImportDeclaration from '#fixtures/devlop-import-declaration'
+import devlopLiteral from '#fixtures/devlop-literal'
 import type { Assign } from '@flex-development/tutils'
 import { createFilter, type CreateFilter } from '@rollup/pluginutils'
 import type {
@@ -16,11 +18,9 @@ import testSubject from '../has-module-id'
 
 describe('unit:utils/hasModuleId', () => {
   let devlopIdentifier: Identifier
-  let devlopLiteral: Assign<Literal, { raw: string; value: string }>
   let filter: ReturnType<CreateFilter>
 
   beforeAll(() => {
-    devlopLiteral = { raw: '\'devlop\'', type: 'Literal', value: 'devlop' }
     devlopIdentifier = { name: devlopLiteral.value, type: 'Identifier' }
     filter = createFilter(/^devlop$/, [], { resolve: false })
   })
@@ -106,21 +106,7 @@ describe('unit:utils/hasModuleId', () => {
     })
 
     it('should return true node is assertion import', () => {
-      // Arrange
-      const node: ImportDeclaration = {
-        source: devlopLiteral,
-        specifiers: [
-          {
-            imported: { name: 'ok', type: 'Identifier' },
-            local: { name: 'ok', type: 'Identifier' },
-            type: 'ImportSpecifier'
-          }
-        ],
-        type: 'ImportDeclaration'
-      }
-
-      // Act + Expect
-      expect(testSubject(node, filter)).to.be.true
+      expect(testSubject(devlopImportDeclaration, filter)).to.be.true
     })
   })
 })

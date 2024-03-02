@@ -4,32 +4,20 @@
  */
 
 import context from '#fixtures/context'
+import parent from '#fixtures/devlop-import-declaration'
+import node from '#fixtures/ok-import-specifier'
 import type { Handler } from '#src/interfaces'
 import type { Handlers, Key } from '#src/types'
 import type { Mock, Spy } from '#tests/interfaces'
-import type { ImportDeclaration, ImportSpecifier, Node, Program } from 'estree'
+import type { ImportDeclaration, Node, Program } from 'estree'
 import testSubject from '../enter'
 
 describe('functional:visitors/enter', () => {
-  let importDeclaration: ImportDeclaration
-  let node: ImportSpecifier
   let program: Program
 
   beforeAll(() => {
-    node = {
-      imported: { name: 'ok', type: 'Identifier' },
-      local: { name: 'ok', type: 'Identifier' },
-      type: 'ImportSpecifier'
-    }
-
-    importDeclaration = {
-      source: { raw: '\'devlop\'', type: 'Literal', value: 'devlop' },
-      specifiers: [node],
-      type: 'ImportDeclaration'
-    }
-
     program = {
-      body: [importDeclaration],
+      body: [parent],
       sourceType: 'module',
       type: 'Program'
     }
@@ -44,7 +32,7 @@ describe('functional:visitors/enter', () => {
     let spy: Spy
 
     beforeAll(() => {
-      ancestors = [program, importDeclaration]
+      ancestors = [program, parent]
       handlers = { [node.type]: handler = vi.fn().mockName(node.type) }
       index = 0
       key = 'specifiers'
@@ -65,7 +53,7 @@ describe('functional:visitors/enter', () => {
     })
 
     it('should set context.parent', () => {
-      expect(context.parent).to.equal(importDeclaration)
+      expect(context.parent).to.equal(parent)
     })
   })
 })

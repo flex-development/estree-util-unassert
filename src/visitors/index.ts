@@ -4,3 +4,4 @@
  */
 
 export { default as enter } from './enter'
+export { default as leave } from './leave'

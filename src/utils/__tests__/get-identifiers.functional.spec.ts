@@ -3,6 +3,8 @@
  * @module estree-util-unassert/utils/tests/functional/getIdentifiers
  */
 
+import devlopLiteral from '#fixtures/devlop-literal'
+import okIdentifier from '#fixtures/ok-identifier'
 import type {
   ArrayPattern,
   AssignmentExpression,
@@ -121,7 +123,7 @@ describe('functional:utils/getIdentifiers', () => {
       local2 = { name: 'assert', type: 'Identifier' }
 
       node = {
-        source: { raw: '\'devlop\'', type: 'Literal', value: 'devlop' },
+        source: devlopLiteral,
         specifiers: [
           {
             imported: { name: 'equal', type: 'Identifier' },
@@ -129,7 +131,7 @@ describe('functional:utils/getIdentifiers', () => {
             type: 'ImportSpecifier'
           },
           {
-            imported: { name: 'ok', type: 'Identifier' },
+            imported: okIdentifier,
             local: local2,
             type: 'ImportSpecifier'
           }
