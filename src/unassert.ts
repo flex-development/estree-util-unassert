@@ -47,4 +47,10 @@ function unassert(this: void, tree: Program, options?: Nilable<Options>): void {
   })
 }
 
+/**
+ * @property {RegExp} MODULES_REGEX - Default regular expression used to match
+ * assertion module ids
+ */
+unassert.MODULES_REGEX = MODULES_REGEX
+
 export default unassert
